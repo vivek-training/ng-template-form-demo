@@ -18,6 +18,9 @@
       #name="ngModel"
       required
     />
+    <span class="text-danger" *ngIf="name.touched && name.errors?.required"
+      >Name is required</span
+    >
   </div>
 
   <div class="form-group">
@@ -51,8 +54,17 @@
       class="form-control"
       ngModel
       #description="ngModel"
-      maxlength="50"
+      minlength="25"
     ></textarea>
+    <span
+      class="text-danger"
+      *ngIf="
+        description.dirty &&
+        description.invalid &&
+        description.errors?.minlength
+      "
+      >Minimum length 25 required</span
+    >
   </div>
   <label>Your exercise schedule</label>
   <div class="form-check">
@@ -61,10 +73,8 @@
       type="radio"
       name="exercise"
       value="daily"
-      checked
       ngModel
       #exercise="ngModel"
-      required
     />
     <label class="form-check-label" for="exampleRadios1">
       Daily
@@ -78,7 +88,6 @@
       value="3 times a week"
       ngModel
       #exercise="ngModel"
-      required
     />
     <label class="form-check-label" for="exampleRadios2">
       Three times a week
@@ -92,10 +101,22 @@
       value="once a week"
       ngModel
       #exercise="ngModel"
-      required
     />
     <label class="form-check-label" for="exampleRadios3">
       Once a week
+    </label>
+  </div>
+  <div class="form-check">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="exercise"
+      value=""
+      ngModel
+      #exercise="ngModel"
+    />
+    <label class="form-check-label" for="exampleRadios3">
+      Not at all
     </label>
   </div>
 
