@@ -16,6 +16,7 @@
       class="form-control"
       ngModel
       #name="ngModel"
+      required
     />
   </div>
 
@@ -50,6 +51,7 @@
       class="form-control"
       ngModel
       #description="ngModel"
+      maxlength="50"
     ></textarea>
   </div>
   <label>Your exercise schedule</label>
@@ -62,6 +64,7 @@
       checked
       ngModel
       #exercise="ngModel"
+      required
     />
     <label class="form-check-label" for="exampleRadios1">
       Daily
@@ -75,6 +78,7 @@
       value="3 times a week"
       ngModel
       #exercise="ngModel"
+      required
     />
     <label class="form-check-label" for="exampleRadios2">
       Three times a week
@@ -88,11 +92,12 @@
       value="once a week"
       ngModel
       #exercise="ngModel"
+      required
     />
     <label class="form-check-label" for="exampleRadios3">
       Once a week
     </label>
   </div>
 
-  <button class="btn btn-primary mt-5">Submit</button>
+  <button class="btn btn-primary mt-5" [disabled]="f.invalid">Submit</button>
 </form>
