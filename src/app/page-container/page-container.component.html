@@ -10,20 +10,33 @@
     <label for="name">
       Your name
     </label>
-    <input type="text" name="name" class="form-control" />
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      ngModel
+      #name="ngModel"
+    />
   </div>
 
   <div class="form-group">
     <label for="name">
       City
     </label>
-    <select name="city" class="form-control">
+    <select name="city" class="form-control" ngModel #city="ngModel">
       <option value="Bengaluru">Bengaluru</option>
     </select>
   </div>
 
   <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+    <input
+      type="checkbox"
+      name="newletter"
+      class="form-check-input"
+      id="exampleCheck1"
+      ngModel
+      #newsletter="ngModel"
+    />
     <label class="form-check-label" for="exampleCheck1">Newsletter</label>
   </div>
 
@@ -31,17 +44,24 @@
     <label for="name">
       Description
     </label>
-    <textarea name="description" rows="3" class="form-control"></textarea>
+    <textarea
+      name="description"
+      rows="3"
+      class="form-control"
+      ngModel
+      #description="ngModel"
+    ></textarea>
   </div>
   <label>Your exercise schedule</label>
   <div class="form-check">
     <input
       class="form-check-input"
       type="radio"
-      name="exampleRadios"
-      id="exampleRadios1"
-      value="option1"
+      name="exercise"
+      value="daily"
       checked
+      ngModel
+      #exercise="ngModel"
     />
     <label class="form-check-label" for="exampleRadios1">
       Daily
@@ -51,9 +71,10 @@
     <input
       class="form-check-input"
       type="radio"
-      name="exampleRadios"
-      id="exampleRadios2"
-      value="option2"
+      name="exercise"
+      value="3 times a week"
+      ngModel
+      #exercise="ngModel"
     />
     <label class="form-check-label" for="exampleRadios2">
       Three times a week
@@ -63,9 +84,10 @@
     <input
       class="form-check-input"
       type="radio"
-      name="exampleRadios"
-      id="exampleRadios3"
-      value="option3"
+      name="exercise"
+      value="once a week"
+      ngModel
+      #exercise="ngModel"
     />
     <label class="form-check-label" for="exampleRadios3">
       Once a week
