@@ -1,0 +1,49 @@
+<h2>Reactive Form: Todo App</h2>
+<button class="btn btn-primary btn-sm" (click)="addItem()">Add</button>
+
+<hr />
+
+<form
+  novalidate
+  autocomplete="off"
+  [formGroup]="form"
+  (ngSubmit)="onSubmitHandler()"
+>
+  <div class="form-group">
+    <label for="Date">
+      Date
+    </label>
+    <input type="date" class="form-control" formControlName="on" />
+  </div>
+  <h3>To do items</h3>
+  <hr />
+  <div *ngFor="let item of items.controls; index as i">
+    <div [formGroup]="item">
+      <div class="row mt-2">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="title"
+            placeholder="title"
+          />
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="description"
+            placeholder="description"
+          />
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-danger btn-sm" (click)="removeItem(i)">
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-5" type="submit">Submit</button>
+</form>
