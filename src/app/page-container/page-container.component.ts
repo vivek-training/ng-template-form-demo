@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-container.component.css']
 })
 export class PageContainerComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  onSubmitHandler(form) {
+    console.log('Form posted', form);
   }
-
 }

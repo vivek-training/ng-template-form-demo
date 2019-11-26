@@ -1,6 +1,11 @@
 <h2>User registration form</h2>
 <hr />
-<form novalidate autocomplete="off">
+<form
+  novalidate
+  autocomplete="off"
+  #f="ngForm"
+  (ngSubmit)="onSubmitHandler(f.value)"
+>
   <div class="form-group">
     <label for="name">
       Your name
