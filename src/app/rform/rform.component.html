@@ -21,8 +21,8 @@
     </label>
     <input type="text" class="form-control" formControlName="name" />
 
-    <span *ngIf="name.touched && name.errors?.async_error" class="text-danger">
-      Async error present
+    <span *ngIf="name.dirty && name.errors?.async_error" class="text-danger">
+      Async error present {{ counter }}
     </span>
   </div>
   <h3>To do items</h3>

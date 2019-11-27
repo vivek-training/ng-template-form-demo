@@ -5,7 +5,8 @@ import {
   FormArray,
   AbstractControl,
   FormControl,
-  ValidationErrors
+  ValidationErrors,
+  FormGroup
 } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -18,6 +19,7 @@ import { delay } from 'rxjs/operators';
 export class RformComponent implements OnInit {
   form: FormGroup;
   validName = 'Default';
+  counter = 0;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -28,7 +30,7 @@ export class RformComponent implements OnInit {
   }
 
   get items(): FormArray {
-    return this.form.controls['items'];
+    return this.form.controls['items'] as FormArray;
   }
 
   addItem() {
@@ -47,7 +49,7 @@ export class RformComponent implements OnInit {
   ngOnInit() {}
 
   get name(): FormControl {
-    return this.form.controls['name'];
+    return this.form.controls['name'] as FormControl;
   }
 
   onSubmitHandler() {
@@ -58,16 +60,18 @@ export class RformComponent implements OnInit {
     control: AbstractControl
   ): Promise<ValidationErrors> | Observable<ValidationErrors> {
     let val = control.value;
+    this.counter++;
 
     if (this.validName === val) {
-      return of(null).pipe(delay(2000)); //  null for passing validation
+      return of(null); //  null for passing validation
     } else {
-      return of({ async_error: true }).pipe(delay(2000));
+      return of({ async_error: true });
     }
 
     // promise implementation: should resolve in either case!
+
     // if (this.validName === val) {
-    //   return Promise.resolve(null);  //  null for passing validation
+    //   return Promise.resolve(null); //  null for passing validation
     // } else {
     //   return Promise.resolve({ async_error: true });
     // }
