@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   Validators,
@@ -8,7 +8,7 @@ import {
   ValidationErrors,
   FormGroup
 } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { delay, map, concatMap, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { RestService } from '../_services/rest.service';
@@ -18,10 +18,11 @@ import { RestService } from '../_services/rest.service';
   templateUrl: './rform.component.html',
   styleUrls: ['./rform.component.css']
 })
-export class RformComponent implements OnInit {
+export class RformComponent implements OnInit, OnDestroy {
   form: FormGroup;
   validName = 'Default';
   counter = 0;
+  createSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,6 +60,11 @@ export class RformComponent implements OnInit {
 
   onSubmitHandler() {
     console.log('Form posted', this.form.value);
+    this.createSubscription = this.restService
+      .createCustomerForm(this.form.value)
+      .subscribe(result => {
+        console.log('Server Responded', result);
+      });
   }
 
   asyncNameValidator(
@@ -92,5 +98,9 @@ export class RformComponent implements OnInit {
     // } else {
     //   return Promise.resolve({ async_error: true });
     // }
+  }
+
+  ngOnDestroy(): void {
+    this.createSubscription.unsubscribe();
   }
 }
