@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-rform',
@@ -17,10 +17,12 @@ export class RformComponent implements OnInit {
   }
 
   get items(): FormArray {
-    return this.form.controls['items'];
+    return this.form.controls['items'] as FormArray;
   }
 
   addItem() {
+    this.form.patchValue({ on: '2018-01-01' });
+
     this.items.push(
       this.formBuilder.group({
         title: ['', [Validators.required, Validators.minLength(5)]],
